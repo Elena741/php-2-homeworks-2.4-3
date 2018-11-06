@@ -23,17 +23,18 @@ if (empty($_POST['login']) || empty($_POST['password'])) {
     $sth->execute();
   
     $sth = $pdo->prepare("SELECT * from user WHERE login='$login' AND password='$password'");
-    $sth->execute();
-    $sth = $sth->fetchAll(PDO::FETCH_ASSOC);
+    $sth2->execute();
+    $sth2 = $sth2->fetchAll(PDO::FETCH_ASSOC);
 
-    if (!empty($sth)) {
+    if (!empty($sth2)) {
 
-        foreach ($sth as $value) {
+        foreach ($sth2 as $value) {
             $_SESSION['user_id']=$value['id'];
             $_SESSION['login']=$value['login'];
             $_SESSION['password']=$value['password'];
         
         }
+    }
         header("Location:toDoList.php");
 
 ?>
